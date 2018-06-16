@@ -4,11 +4,12 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Settings
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <app-login></app-login>
+  <ion-img [src]="image"></ion-img>
+  <ion-button (click)="takePhoto()">Take Photo</ion-button>
 </ion-content>

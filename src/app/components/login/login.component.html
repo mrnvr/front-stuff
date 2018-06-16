@@ -1,0 +1,7 @@
+<ion-item>
+    <ion-input type="text" [(ngModel)]="uAttempt" placeholder="Username"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-input type="password" [(ngModel)]="pAttempt" placeholder="Password" (keyup.enter)="onSubmit()" ></ion-input>
+</ion-item>
+<ion-button (click)="onSubmit()" expand="full">Log In</ion-button>
