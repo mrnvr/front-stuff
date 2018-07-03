@@ -11,13 +11,6 @@ import { SwPush } from '@angular/service-worker';
 })
 
 export class AppComponent {
-  public appPages = [
-    { title: 'Home', url: '/home', icon: 'home' },
-    { title: 'Settings', url: '/settings', icon: 'settings' },
-    { title: 'Contact', url: '/contact', icon: 'contact' },
-    { title: 'About', url: '/about', icon: 'call' },
-    { title: 'Shared', url: '/shared' }
-  ];
   readonly key = 'BJ194kBackiD-K1emxGtnXEPn1qlwyXVRGhITkaNWJzMokZ7RZLvOt0eVBvBfUMbJFiUafnkdCIGZWh6CGk8CLs';
 
   constructor(

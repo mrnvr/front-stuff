@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { GeolocationPosition, Plugins } from '@capacitor/core';
 
@@ -12,7 +12,7 @@ const { Geolocation } = Plugins;
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
-  @Input() public position: GeolocationPosition;
+  public position: GeolocationPosition;
   public toggleGeolocationAlert: boolean;
 
   constructor(private alertCtrl: AlertController) {
@@ -35,13 +35,13 @@ export class AboutPage implements OnInit {
   async showAlert() {
     const lat = this.position.coords.latitude.toPrecision(8);
     const long = this.position.coords.longitude.toPrecision(8);
-    const al = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: 'Position',
       message: 'Lat: ' + lat + '\nLong: ' + long,
       buttons: [
         'ok'
       ]
     });
-    await al.present();
+    await alert.present();
   }
 }

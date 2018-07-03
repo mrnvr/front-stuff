@@ -2,5 +2,5 @@
   "appId": "com.keyclic.app",
   "appName": "ionic4-capacitor",
   "bundledWebRuntime": false,
-  "webDir": "www"
+  "webDir": "dist"
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../../models';
-import { PostStoreState, PostStoreSelector, PostStoreActions } from '../../root-store';
+import { PostStoreSelector, PostStoreActions, RootStoreState } from '../../root-store';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -17,12 +17,11 @@ export class SettingsPage implements OnInit {
   public posts$: Observable<Post[]>;
 
   constructor(
-    // private store: Store<RootStoreState.RootState>,
-    private store: Store<PostStoreState.State>,
+    private store: Store<RootStoreState.RootState>,
     private cd: ChangeDetectorRef,
   ) {
     this.posts$ = store.select(PostStoreSelector.selectPosts);
-    this.cd.markForCheck();
+    cd.markForCheck();
   }
 
   ngOnInit() {

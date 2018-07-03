@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Member } from '../../models';
+import { Post } from '../../models';
 import * as fromStore from '../../root-store';
 
 @Component({
@@ -11,21 +11,17 @@ import * as fromStore from '../../root-store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SharedStatePage implements OnInit {
-  public members$: Observable<Member[]>;
-  @Input() public name: string;
-  @Input() public roles: string[];
+  public posts$: Observable<Post[]>;
 
   constructor(
-    private store: Store<fromStore.MemberStoreState.State>,
+    private store: Store<fromStore.PostStoreState.State>,
     private cd: ChangeDetectorRef
   ) {
-    this.members$ = this.store.select(fromStore.MemberStoreSelectors.selectMembers);
+    this.posts$ = this.store.select(fromStore.PostStoreSelector.selectPosts);
     cd.markForCheck();
   }
 
   ngOnInit() {
     this.cd.markForCheck();
-    this.name = '';
-    this.roles = [];
   }
 }

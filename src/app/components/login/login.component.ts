@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.resetCredentials();
-    return this.router.navigateByUrl('/about');
+    return this.router.navigateByUrl('/tabs/(about:about)');
   }
 
   resetCredentials() {

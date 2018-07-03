@@ -1,6 +1,5 @@
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromPostReducer from './post.reducer';
-import { Post } from '../../models';
 import { postAdapter, State } from './post.state';
 
 export const {
@@ -10,15 +9,12 @@ export const {
   selectTotal
 } = postAdapter.getSelectors();
 
-export const selectPostState: MemoizedSelector<
-  object,
-  State
-  > = createFeatureSelector<State>('post');
+export const selectPostState = createFeatureSelector<State>('post');
 
-export const selectPosts: MemoizedSelector<
-  State,
-  Post[]
-  > = createSelector(selectPostState, selectAll);
+export const selectPosts = createSelector(
+  selectPostState,
+  selectAll
+);
 
 export const selectPostsLastId = createSelector(
   selectPostState,
