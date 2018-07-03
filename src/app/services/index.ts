@@ -1,5 +1,5 @@
-import { DataService } from './data.service';
+import { ApiService } from './api.service';
 
-export const services: any[] = [ DataService ];
+export const services: any[] = [ ApiService ];
 
-export * from './data.service';
+export * from './api.service';

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     if (this.uAttempt !== this.username) {
       const a = await this.alert.create({
         header: 'Wrong username',
-        subHeader: 'I\'m so dumb I can\'t even remember my name',
+        subHeader: 'Can\'t remember my name',
         buttons: ['I agree'],
       });
       await a.present();
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.resetCredentials();
-    return this.router.navigateByUrl('about');
+    return this.router.navigateByUrl('/about');
   }
 
   resetCredentials() {

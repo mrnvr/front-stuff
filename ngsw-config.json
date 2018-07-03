@@ -5,7 +5,7 @@
     "installMode": "prefetch",
     "resources": {
       "files": [
-        "/favicon.ico",
+        "/favicon.png",
         "/index.html",
         "/*.css",
         "/*.js"
@@ -19,6 +19,47 @@
       "files": [
         "/assets/**"
       ]
+    }
+  },
+  {
+    "name": "shell",
+    "installMode": "prefetch",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/app/**/*.html",
+        "/**/*.scss",
+        "/app/components/**/*.ts",
+        "/app/pages/**/*.ts",
+        "!/**/*spec*"
+      ],
+      "urls": [
+        "/home",
+        "/settings"
+      ]
+    }
+  }],
+  "dataGroups": [{
+    "name": "api-freshness",
+    "urls": [
+      "/about"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "1h",
+      "timeout": "3s",
+      "strategy": "freshness"
+    }
+  },
+  {
+    "name": "api-performance",
+    "urls": [
+      "/contact"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "1h",
+      "strategy": "performance"
     }
   }]
 }

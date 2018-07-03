@@ -1,7 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
+
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -9,7 +12,12 @@ import { IonicModule } from '@ionic/angular';
     FormsModule,
     IonicModule.forRoot(),
   ],
-  declarations: [],
+  declarations: [
+    LoginComponent
+  ],
+  exports: [
+    LoginComponent
+  ],
   entryComponents: [],
 })
 export class ComponentsModule {}

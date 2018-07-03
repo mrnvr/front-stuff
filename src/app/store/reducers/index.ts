@@ -1,35 +1,12 @@
-import * as member from './members.reducer';
-import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-
-export interface AppState {
-  members: member.MemberState;
-}
+import * as members from './member.reducer';
+import * as posts from './post.reducer';
+import { ActionReducerMap } from '@ngrx/store';
+import { AppState } from '../state';
 
 export const reducers: ActionReducerMap<AppState> = {
-  members: member.MembersReducer
+  members: members.membersReducer,
+  posts: posts.postReducer
 };
 
-export const getAppState = createFeatureSelector<AppState>(
-  'members'
-);
-
-// members state
-export const getMembersState = createSelector(
-  getAppState,
-  (state: AppState) => state.members
-);
-
-export const getMembers = createSelector(
-  getMembersState,
-  member.getMembers
-);
-
-export const getMembersLoaded = createSelector(
-  getMembersState,
-  member.getMembersLoaded
-);
-
-export const getMembersLoading = createSelector(
-  getMembersState,
-  member.getMembersLoading
-);
+export * from './post.reducer';
+export * from './member.reducer';

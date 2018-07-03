@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
-import { LoginComponent } from '../../components/login/login.component';
+import { ComponentsModule } from '../../components/components';
 
 @NgModule({
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild([
@@ -22,7 +23,6 @@ import { LoginComponent } from '../../components/login/login.component';
   ],
   declarations: [
     HomePage,
-    LoginComponent
   ]
 })
 export class HomePageModule {}

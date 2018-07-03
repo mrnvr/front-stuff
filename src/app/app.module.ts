@@ -8,13 +8,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
-import { reducers, effects } from './store';
+
+import { RootStoreModule } from './root-store';
 
 @NgModule({
   declarations: [
@@ -26,11 +24,8 @@ import { reducers, effects } from './store';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-    StoreModule.forRoot(reducers),
-    StoreModule.forFeature('members', reducers),
-    EffectsModule.forRoot(effects),
-    // EffectsModule.forFeature(effects),
+    RootStoreModule,
+    ServiceWorkerModule.register( '/ngsw-worker.js', { enabled: true }),
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,11 @@
 {
   "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
+  "defaultProject": "app",
+  "cli": {
+    "packageManager": "yarn",
+    "defaultCollection": "@ngrx/schematics"
+  },
   "projects": {
     "app": {
       "root": "",
@@ -29,9 +34,16 @@
                 "input": "node_modules/@ionic/angular/dist/ionic/svg",
                 "output": "./svg"
               },
-              "src/manifest.json",
-              "src/app.ts",
-              "src/ngsw-worker.ts"
+              {
+                "glob": "ngsw-worker.js",
+                "input": "node_modules/@angular/service-worker",
+                "output": ""
+              },
+              {
+                "glob": "manifest.json",
+                "input": "src",
+                "output": ""
+              }
             ],
             "styles": [
               {
@@ -44,6 +56,9 @@
             "scripts": []
           },
           "configurations": {
+            "development": {
+              "serviceWorker": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -70,6 +85,9 @@
             "browserTarget": "app:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "app:build:development"
+            },
             "production": {
               "browserTarget": "app:build:production"
             }
@@ -142,7 +160,125 @@
           }
         }
       }
+    },
+    "keyclic": {
+      "root": "undefined/keyclic/",
+      "sourceRoot": "undefined/keyclic/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/keyclic",
+            "index": "undefined/keyclic/src/index.html",
+            "main": "undefined/keyclic/src/main.ts",
+            "polyfills": "undefined/keyclic/src/polyfills.ts",
+            "tsConfig": "undefined/keyclic/tsconfig.app.json",
+            "assets": [
+              "undefined/keyclic/src/favicon.ico",
+              "undefined/keyclic/src/assets"
+            ],
+            "styles": [
+              "undefined/keyclic/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "undefined/keyclic/src/environments/environment.ts",
+                  "with": "undefined/keyclic/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "keyclic:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "keyclic:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "keyclic:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "undefined/keyclic/src/test.ts",
+            "polyfills": "undefined/keyclic/src/polyfills.ts",
+            "tsConfig": "undefined/keyclic/tsconfig.spec.json",
+            "karmaConfig": "undefined/keyclic/karma.conf.js",
+            "styles": [
+              "undefined/keyclic/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "undefined/keyclic/src/favicon.ico",
+              "undefined/keyclic/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "undefined/keyclic/tsconfig.app.json",
+              "undefined/keyclic/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "keyclic-e2e": {
+      "root": "undefined/keyclic-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "undefined/keyclic-e2e/protractor.conf.js",
+            "devServerTarget": "keyclic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "keyclic:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "undefined/keyclic-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "app"
+  }
 }

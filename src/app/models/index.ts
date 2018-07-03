@@ -1,1 +1,2 @@
-export * from './member';
+export * from './member.model';
+export * from './post.model';

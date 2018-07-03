@@ -2,57 +2,56 @@ import { Action } from '@ngrx/store';
 
 import { Member } from '../../models';
 
-export const ADD_MEMBER = '[MEMBER] ADD';
-export const ADD_MEMBER_FAIL = '[MEMBER] ADD FAIL';
-export const ADD_MEMBER_SUCCESS = '[MEMBER] ADD SUCCESS';
-
-export const DELETE_MEMBER = '[MEMBER] DELETE';
-export const DELETE_MEMBER_FAIL = '[MEMBER] DELETE FAIL';
-export const DELETE_MEMBER_SUCCESS = '[MEMBER] DELETE SUCCESS';
-
-export const LOAD_MEMBERS = '[MEMBER] LOAD';
-export const LOAD_MEMBERS_FAIL = '[MEMBER] LOAD FAIL';
-export const LOAD_MEMBERS_SUCCESS = '[MEMBER] LOAD SUCCESS';
-
-export const UPDATE_MEMBER = '[MEMBER] UPDATE';
-export const UPDATE_MEMBER_FAIL = '[MEMBER] UPDATE FAIL';
-export const UPDATE_MEMBER_SUCCESS = '[MEMBER] UPDATE SUCCESS';
+export enum MemberActionsTypes {
+  AddMember = '[MEMBER] Add Member',
+  AddMemberFail = '[MEMBER] Add Member Fail',
+  AddMemberSuccess = '[MEMBER] Add Member Success',
+  DeleteMember = '[MEMBER] Delete Member',
+  DeleteMemberFail = '[MEMBER] Delete Member Fail',
+  DeleteMemberSuccess = '[MEMBER] Delete Member Success',
+  LoadMembers = '[MEMBER] Load Members',
+  LoadMembersFail = '[MEMBER] Load Members Fail',
+  LoadMembersSuccess = '[MEMBER] Load Members Success',
+  UpdateMembers = '[MEMBER] Update Members',
+  UpdateMembersFail = '[MEMBER] Update Members Fail',
+  UpdateMembersSuccess = '[MEMBER] Update Members Success',
+}
 
 export class AddMember implements Action {
-  readonly type = ADD_MEMBER;
+  readonly type = MemberActionsTypes.AddMember;
 
   constructor(public payload: Member) {}
 }
 
 export class LoadMembers implements Action {
-  readonly type = LOAD_MEMBERS;
+  readonly type = MemberActionsTypes.LoadMembers;
 }
 
 export class LoadMembersFail implements Action {
-  readonly type = LOAD_MEMBERS_FAIL;
+  readonly type = MemberActionsTypes.LoadMembersFail;
 
   constructor(public payload: any) {}
 }
 
 export class LoadMembersSuccess implements Action {
-  readonly type = LOAD_MEMBERS_SUCCESS;
+  readonly type = MemberActionsTypes.LoadMembersSuccess;
 
   constructor(public payload: Member[]) {}
 }
 
 export class DeleteMember implements Action {
-  readonly type = DELETE_MEMBER;
+  readonly type = MemberActionsTypes.DeleteMember;
 
   constructor(public payload: number) {}
 }
 
 export class UpdateMember implements Action {
-  readonly type = UPDATE_MEMBER;
+  readonly type = MemberActionsTypes.UpdateMembers;
 
   constructor(public payload: Member) {}
 }
 
-export type Actions = AddMember
+export type MemberActions = AddMember
   | DeleteMember
   | UpdateMember
   | LoadMembers

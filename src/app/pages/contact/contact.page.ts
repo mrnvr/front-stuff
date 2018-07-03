@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { Member } from '../../models';
-import * as fromStore from '../../store';
+import * as fromStore from '../../root-store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-contact',
@@ -17,20 +16,24 @@ export class ContactPage implements OnInit {
   @Input() public roles: string[];
 
   constructor(
-    private store: Store<fromStore.AppState>,
+    private store: Store<fromStore.MemberStoreState.State>,
+    private cd: ChangeDetectorRef
   ) {
-    this.members$ = this.store.select(fromStore.getMembers);
+    this.members$ = this.store.select(fromStore.MemberStoreSelectors.selectMembers);
+    cd.markForCheck();
   }
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadMembers());
+    this.store.dispatch(new fromStore.MemberStoreActions.LoadMembers());
     this.name = '';
     this.roles = [];
   }
 
   addMember(): void {
-    if (this.name !== '' && this.roles.length > 0) {
-      this.store.dispatch(new fromStore.AddMember({name: this.name, company: {bs: this.roles}}));
+    const name: string = this.name;
+    const roles: string[] = this.roles;
+    if (name !== '' && roles.length > 0) {
+      this.store.dispatch(new fromStore.MemberStoreActions.AddMember({name: name, company: {bs: roles}}));
       this.resetCred();
     }
   }
