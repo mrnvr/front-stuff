@@ -5,5 +5,29 @@
 </ion-header>
 
 <ion-content padding>
-  <app-login></app-login>
+  <ion-item>
+    <ion-label>Title</ion-label>
+    <ion-input type="text" [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Body</ion-label>
+    <ion-input type="text" [(ngModel)]="body"></ion-input>
+  </ion-item>
+  <ion-button (click)="onSubmit()" expand="full">Send post</ion-button>
+
+  <ion-list-header>
+    <ion-label>Posts</ion-label>
+  </ion-list-header>
+  <ion-list *ngFor="let post of posts$ | async">
+    <ion-item [id]="post.id">
+      <ion-label>
+        text : {{ post.title }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        body : {{ post.body }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

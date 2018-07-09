@@ -34,8 +34,9 @@
     "@ngrx/effects": "^6.0.1",
     "@ngrx/entity": "^6.0.1",
     "@ngrx/store": "^6.0.1",
+    "@ngxs/store": "^3.1.4",
     "core-js": "^2.5.3",
-    "rxjs": "6.1.0",
+    "rxjs": "^6.1.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -46,9 +47,12 @@
     "@angular/compiler": "^6.0.2",
     "@angular/compiler-cli": "^6.0.2",
     "@angular/language-service": "^6.0.5",
+    "@ionic/app-scripts": "^3.1.10",
     "@ionic/lab": "1.0.0-rc.6",
     "@ngrx/schematics": "^6.0.1",
     "@ngrx/store-devtools": "^6.0.1",
+    "@ngxs/devtools-plugin": "^3.1.4",
+    "@ngxs/logger-plugin": "^3.1.4",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.1.0",

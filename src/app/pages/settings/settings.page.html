@@ -20,7 +20,7 @@
   <ion-button (click)="onSubmit()" expand="full">Send post</ion-button>
 
   <ion-list *ngFor="let post of posts$ | async">
-    <ion-item [id]="post.id" onclick="console.log(id)">
+    <ion-item [id]="post.id" (click)="displayAction(post.id)">
       <ion-label>
         text : {{ post.title }}
       </ion-label>

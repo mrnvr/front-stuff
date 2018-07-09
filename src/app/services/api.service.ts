@@ -27,7 +27,15 @@ export class ApiService {
     return this.http.get<Post[]>(this.base_url + '/posts');
   }
 
+  getPostsByPage(page: number): Observable<Post[]> {
+    return this.http.get<Post[]>(this.base_url + '/posts?page=' + page);
+  }
+
   postComment(body: Object): Observable<Post> {
     return this.http.post<Post>(this.base_url + '/posts', body, this.httpHeader);
+  }
+
+  deleteComment(id: number) {
+    return this.http.delete(this.base_url + '/posts/' + id);
   }
 }

@@ -12,8 +12,8 @@ import { Store } from '@ngrx/store';
 })
 export class ContactPage implements OnInit {
   public members$: Observable<Member[]>;
-  @Input() public name: string;
-  @Input() public roles: string[];
+  public name: string;
+  public roles: string[];
 
   constructor(
     private store: Store<fromStore.MemberStoreState.State>,

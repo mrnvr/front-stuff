@@ -12,16 +12,35 @@ import * as fromStore from '../../root-store';
 })
 export class SharedStatePage implements OnInit {
   public posts$: Observable<Post[]>;
+  readonly limit: number;
+  private current: number;
+  public toggleLoadMore: boolean;
 
   constructor(
     private store: Store<fromStore.PostStoreState.State>,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
   ) {
-    this.posts$ = this.store.select(fromStore.PostStoreSelector.selectPosts);
+    this.limit = 0;
+    this.current = 95;
+    this.toggleLoadMore = false;
+    this.posts$ = this.store.select(fromStore.PostStoreSelector.selectLastPosts(this.current));
     cd.markForCheck();
   }
 
   ngOnInit() {
+    this.posts$.subscribe((posts) => {
+      if (posts.length > 0) {
+        this.toggleLoadMore = true;
+      }
+    });
     this.cd.markForCheck();
+  }
+
+  loadMore() {
+    this.current -= 10;
+    this.posts$ = this.store.select(fromStore.PostStoreSelector.selectLastPosts(this.current));
+    if (this.limit >= this.current) {
+      this.toggleLoadMore = false;
+    }
   }
 }

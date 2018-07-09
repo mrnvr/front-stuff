@@ -1,8 +1,13 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+
+import { ActionSheetController } from '@ionic/angular';
+
+import { select, Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
+
 import { Post } from '../../models';
 import { PostStoreSelector, PostStoreActions, RootStoreState } from '../../root-store';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-settings',
@@ -19,8 +24,9 @@ export class SettingsPage implements OnInit {
   constructor(
     private store: Store<RootStoreState.RootState>,
     private cd: ChangeDetectorRef,
+    private actionSheetCtrl: ActionSheetController
   ) {
-    this.posts$ = store.select(PostStoreSelector.selectPosts);
+    this.posts$ = store.pipe(select(PostStoreSelector.selectPosts));
     cd.markForCheck();
   }
 
@@ -32,8 +38,8 @@ export class SettingsPage implements OnInit {
     this.userId = null;
   }
 
-  async onSubmit() {
-    await this.store.select(PostStoreSelector.selectPostsLastId)
+  onSubmit() {
+    this.store.pipe(select(PostStoreSelector.selectPostsLastId))
       .subscribe((id: number) => this.id = id + 1);
     const payload: Post = {
       id: this.id,
@@ -49,5 +55,27 @@ export class SettingsPage implements OnInit {
     this.title = '';
     this.body = '';
     this.userId = null;
+  }
+
+  async displayAction(id: number) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Action Sheet',
+      buttons: [
+        {
+          text: 'Delete Post',
+          handler: () => this.deletePost(id)
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  deletePost(id: number) {
+    console.log(id);
+    this.store.dispatch(new PostStoreActions.DeletePost(id));
   }
 }

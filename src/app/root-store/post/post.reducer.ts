@@ -28,6 +28,27 @@ export function reducer(state: State = initialState, action: PostActions): State
         lastId: action.payload.id
       });
     }
+    case PostActionTypes.DeletePost: {
+      console.log('DELETE');
+      return {
+        ...state,
+        processing: true,
+        processed: false
+      };
+    }
+    case PostActionTypes.DeletePostFail: {
+      console.log('DELETE FAIL');
+      console.log(action.payload);
+      return {
+        ...state,
+        processing: false,
+        processed: false
+      };
+    }
+    case PostActionTypes.DeletePostSuccess: {
+      console.log('DELETE SUCCESS');
+      return postAdapter.removeOne(action.payload, state);
+    }
     case PostActionTypes.LoadPosts: {
       console.log('LOAD');
       return {

@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromPostReducer from './post.reducer';
 import { postAdapter, State } from './post.state';
+import { Post } from '../../models';
 
 export const {
   selectAll,
@@ -14,6 +15,11 @@ export const selectPostState = createFeatureSelector<State>('post');
 export const selectPosts = createSelector(
   selectPostState,
   selectAll
+);
+
+export const selectLastPosts = (limit: number) => createSelector(
+  selectPosts,
+  (posts: Post[]) => posts.filter(post => post.id >= limit)
 );
 
 export const selectPostsLastId = createSelector(

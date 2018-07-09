@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components';
 import { environment } from '../environments/environment';
 import { RootStoreModule } from './root-store';
+import { StoreModule } from './ngxs/store.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { RootStoreModule } from './root-store';
     HttpClientModule,
     IonicModule.forRoot(),
     RootStoreModule,
+    StoreModule,
     ServiceWorkerModule.register( '/ngsw-worker.js', { enabled: true }),
   ],
   providers: [

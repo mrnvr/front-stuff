@@ -2,7 +2,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Post } from '../../models';
 
 export const postAdapter: EntityAdapter<Post> = createEntityAdapter<Post>({
-  selectId: (post: Post) => post.title,
+  selectId: (post: Post) => post.id,
   sortComparer: sortById
 });
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +11,13 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
-  uAttempt: string;
-  pAttempt: string;
+  @Input() uAttempt: string;
+  @Input() pAttempt: string;
 
   constructor(private alert: AlertController, private router: Router) { }
 
   ngOnInit() {
-    this.username = 'marin';
+    this.username = 'keyclic';
     this.password = 'keyclic';
     this.uAttempt = '';
     this.pAttempt = '';

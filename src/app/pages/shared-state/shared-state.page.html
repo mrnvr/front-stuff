@@ -6,6 +6,9 @@
 
 <ion-content padding>
   <app-login></app-login>
+  <ion-item *ngIf="toggleLoadMore">
+    <ion-button (click)="loadMore()">More</ion-button>
+  </ion-item>
   <ion-list-header>
     <ion-label>Posts</ion-label>
   </ion-list-header>
